@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8F2B0A58-C858-48C6-8193-2C45D21543A6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Swisscard.MS</RootNamespace>
+    <AssemblyName>Swisscard.MS</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.EnterpriseManagement.Core, Version=7.0.5000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Resources\SCSM\2016\Microsoft.EnterpriseManagement.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.ServiceManager.Application.Common">
+      <HintPath>..\..\Resources\SCSM\2016\Microsoft.EnterpriseManagement.ServiceManager.Application.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.ServiceManager.ReleaseManagement.Forms">
+      <HintPath>..\..\Resources\SCSM\2016\Microsoft.EnterpriseManagement.ServiceManager.ReleaseManagement.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.ServiceManager.ReleaseManagement.Presentation">
+      <HintPath>..\..\Resources\SCSM\2016\Microsoft.EnterpriseManagement.ServiceManager.ReleaseManagement.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.ServiceManager.SharedResources">
+      <HintPath>..\..\Resources\SCSM\2016\Microsoft.EnterpriseManagement.ServiceManager.SharedResources.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.ConsoleFramework">
+      <HintPath>..\..\Resources\SCSM\2016\Microsoft.EnterpriseManagement.UI.ConsoleFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.Controls">
+      <HintPath>..\..\Resources\SCSM\2016\Microsoft.EnterpriseManagement.UI.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.Core">
+      <HintPath>..\..\Resources\SCSM\2016\Microsoft.EnterpriseManagement.UI.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.ExtendedControls, Version=7.0.5000.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Resources\SCSM\2016\Microsoft.EnterpriseManagement.UI.ExtendedControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.Extensions">
+      <HintPath>..\..\Resources\SCSM\2016\Microsoft.EnterpriseManagement.UI.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.FormsInfra">
+      <HintPath>..\..\Resources\SCSM\2016\Microsoft.EnterpriseManagement.UI.FormsInfra.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.Foundation">
+      <HintPath>..\..\Resources\SCSM\2016\Microsoft.EnterpriseManagement.UI.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.SdkDataAccess">
+      <HintPath>..\..\Resources\SCSM\2016\Microsoft.EnterpriseManagement.UI.SdkDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.SMControls">
+      <HintPath>..\..\Resources\SCSM\2016\Microsoft.EnterpriseManagement.UI.SMControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.WpfWizardFramework">
+      <HintPath>..\..\Resources\SCSM\2016\Microsoft.EnterpriseManagement.UI.WpfWizardFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WPFToolKit">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft System Center 2012 R2\Service Manager\WPFToolKit.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\Primitives\ListEditorControl.xaml.cs">
+      <DependentUpon>ListEditorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SwisscardMSService.xaml.cs">
+      <DependentUpon>SwisscardMSService.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SwisscardMSServiceComponent.xaml.cs">
+      <DependentUpon>SwisscardMSServiceComponent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\ConfigItemRelatedItemsConfiguration.cs" />
+    <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\ImageDataToImageSourceConverter.cs" />
+    <Compile Include="Helpers\LocalizationHelper.cs" />
+    <Compile Include="Helpers\NotBooleanToVisibilityConverter.cs" />
+    <Compile Include="Helpers\NotEmptyFieldValidationRule.cs" />
+    <Compile Include="Helpers\SDKHelper.cs" />
+    <Compile Include="Helpers\TraceHelper.cs" />
+    <Compile Include="Helpers\WpfExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MP\Swisscard.MS.Class.Library.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="MP\Swisscard.MS.Configuration.xml" />
+    <Content Include="MP\Swisscard.MS.Presentation.xml" />
+    <Content Include="Tools\FastSeal.exe" />
+    <Content Include="Tools\MPBMaker.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\Common.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Primitives\ListEditorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SwisscardMSService.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SwisscardMSServiceComponent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tools\SC.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>cd "$(ProjectDir)"
+if "$(ConfigurationName)" == "Debug" (
+echo "Copy DLL to SCSM folder"
+xcopy "$(TargetPath)" "C:\Program Files\Microsoft System Center 2012 R2\Service Manager\" /Y
+xcopy "$(TargetDir)Ookii.Dialogs.Wpf.dll" "C:\Program Files\Microsoft System Center 2012 R2\Service Manager\" /Y
+goto exit
+)
+echo "Remove MP"
+del "$(TargetDir)*.mp" /Q
+echo "Remove MPB"
+del "$(TargetDir)*.mpb" /Q
+echo "Remove PNG"
+del "$(TargetDir)*.png" /Q
+echo "Remove unsealed MPs"
+del "$(TargetDir)*.xml" /Q
+
+xcopy "Images\*.png" "$(TargetDir)" /Y
+
+echo "Sealing"
+"$(ProjectDir)Tools\FastSeal.exe" "$(ProjectDir)MP\Swisscard.MS.Class.Library.xml" /Keyfile "$(ProjectDir)Tools\SC.snk" /Company "Swisscard AECS GmbH" /Outdir "$(TargetDir)\" /Copyright "Swisscard"
+"$(ProjectDir)Tools\FastSeal.exe" "$(ProjectDir)MP\Swisscard.MS.Presentation.xml" /Keyfile "$(ProjectDir)Tools\SC.snk"  /Company "Swisscard AECS GmbH" /Outdir "$(TargetDir)\" /Copyright "Swisscard"
+
+xcopy "$(ProjectDir)MP\Swisscard.MS.Configuration.xml" "$(TargetDir)" /Y
+
+"$(ProjectDir)Tools\MPBMaker.exe" "Swisscard.MS.Presentation" "$(TargetDir)Swisscard.MS.Presentation.mp"
+
+echo "Remove DLL"
+del "$(TargetDir)Microsoft*.dll" /Q
+del "$(TargetDir)ADODB.dll" /Q
+del "$(TargetDir)de\*.dll" /Q
+rmdir "$(TargetDir)de" /Q
+del "$(TargetDir)Swisscard.MS.Presentation.mp" /Q
+del "$(TargetDir)Swisscard.MS.pdb" /Q
+
+:exit
+</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

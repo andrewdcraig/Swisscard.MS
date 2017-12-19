@@ -1,0 +1,244 @@
+﻿<ManagementPack ContentReadable="true" SchemaVersion="2.0" OriginalSchemaVersion="1.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <Manifest>
+    <Identity>
+      <ID>Swisscard.MS.Class.Library</ID>
+      <Version>1.0.0.5</Version>
+    </Identity>
+    <Name>Swisscard.MS.Class.Library</Name>
+    <References>
+      <Reference Alias="EnterpriseManagement">
+        <ID>Microsoft.EnterpriseManagement.ServiceManager.UI.Console</ID>
+        <Version>7.5.3079.148</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="CustomMicrosoft_Windows_Library">
+        <ID>Microsoft.Windows.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SystemLibrary">
+        <ID>System.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SystemCenter">
+        <ID>Microsoft.SystemCenter.Library</ID>
+        <Version>7.0.8433.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="ProvanceCommon">
+        <ID>Provance.Common.Library</ID>
+        <Version>3.5.70.0</Version>
+        <PublicKeyToken>7c0e08a556dae555</PublicKeyToken>
+      </Reference>
+      <Reference Alias="ProvanceAssetLibrary">
+        <ID>Provance.Asset.Library</ID>
+        <Version>3.5.70.0</Version>
+        <PublicKeyToken>7c0e08a556dae555</PublicKeyToken>
+      </Reference>
+      <Reference Alias="UIAuthoring">
+        <ID>Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring</ID>
+        <Version>7.5.3079.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+    </References>
+  </Manifest>
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+        <ClassType ID="Swisscard.MS" Accessibility="Public" Abstract="false" Base="SystemLibrary!System.ConfigItem" Hosted="false" Singleton="false" Extension="false" >
+          <Property ID="ID" Type="string" AutoIncrement="true" DefaultValue="SMS{0}" Key="true" CaseSensitive="false" MaxLength="128" MinLength="0" Required="false" Scale="0" />
+          <Property ID="Classification" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="Swisscard.MS.ClassificationEnum" />
+          <Property ID="Criticality" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="Swisscard.MS.CriticalityEnum" />
+          <Property ID="Description" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="4096" MinLength="0" Required="false" Scale="0" />
+          <Property ID="DocumentationPath" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="4096" MinLength="0" Required="false" Scale="0" />
+          <Property ID="CrossPlatformID" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="MaintenanceWindow" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="Name" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+          <Property ID="Status" Type="enum" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" EnumType="Swisscard.MS.StatusEnum" />
+        </ClassType>
+        <ClassType ID="Swisscard.MS.Service" Accessibility="Public" Abstract="false" Base="Swisscard.MS" Hosted="false" Singleton="false" Extension="false" >
+          <Property ID="ID" Type="string" AutoIncrement="true" DefaultValue="MS{0}" Key="false" CaseSensitive="false" MaxLength="128" MinLength="0" Required="false" Scale="0" />
+        </ClassType>
+        <ClassType ID="Swisscard.MS.ServiceComponent" Accessibility="Public" Abstract="false" Base="Swisscard.MS" Hosted="false" Singleton="false" Extension="false" >
+          <Property ID="ID" Type="string" AutoIncrement="true" DefaultValue="MSC{0}" Key="false" CaseSensitive="false" MaxLength="128" MinLength="0" Required="false" Scale="0" />
+          <Property ID="TargetOU" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" Scale="0" />
+        </ClassType>
+      </ClassTypes>
+      <RelationshipTypes>
+        <RelationshipType ID="Swisscard.MS.ManagedServiceImpactsUser" Accessibility="Public" Abstract="false" Base="SystemLibrary!System.Reference">
+          <Source ID="ManagedService" MinCardinality="0" MaxCardinality="2147483647" Type="Swisscard.MS" />
+          <Target ID="ImpactedUser" MinCardinality="0" MaxCardinality="2147483647" Type="SystemLibrary!System.User" />
+        </RelationshipType>
+        <RelationshipType ID="Swisscard.MS.ManagedServiceHasContact" Accessibility="Public" Abstract="false" Base="SystemLibrary!System.Reference">
+          <Source ID="ManagedService" MinCardinality="0" MaxCardinality="2147483647" Type="Swisscard.MS" />
+          <Target ID="Contact" MinCardinality="0" MaxCardinality="2147483647" Type="SystemLibrary!System.User" />
+        </RelationshipType>
+        <RelationshipType ID="Swisscard.MS.ManagedServiceHasResponsibleDepartment" Accessibility="Public" Abstract="false" Base="SystemLibrary!System.Reference">
+          <Source ID="ManagedService" MinCardinality="0" MaxCardinality="2147483647" Type="Swisscard.MS" />
+          <Target ID="ProvanceClassOrganizationBase" MinCardinality="0" MaxCardinality="1" Type="ProvanceCommon!Provance.Class.OrganizationBase" />
+        </RelationshipType>
+        <RelationshipType ID="Swisscard.MS.ManagedServiceDependsOnManagedService" Accessibility="Public" Abstract="false" Base="SystemLibrary!System.Reference">
+          <Source ID="SourceManagedService" MinCardinality="0" MaxCardinality="2147483647" Type="Swisscard.MS" />
+          <Target ID="TargetManagedService" MinCardinality="0" MaxCardinality="2147483647" Type="Swisscard.MS" />
+        </RelationshipType>
+        <RelationshipType ID="Swisscard.MS.ManagedServiceHasOwner" Accessibility="Public" Abstract="false" Base="SystemLibrary!System.Reference">
+          <Source ID="ManagedService" MinCardinality="0" MaxCardinality="2147483647" Type="Swisscard.MS" />
+          <Target ID="ADUser" MinCardinality="0" MaxCardinality="1" Type="CustomMicrosoft_Windows_Library!Microsoft.AD.User" />
+        </RelationshipType>
+        <RelationshipType ID="Swisscard.MS.ManagedServiceHasManagedServiceComponent" Accessibility="Public" Abstract="false" Base="SystemLibrary!System.Membership">
+          <Source ID="ManagedService" MinCardinality="0" MaxCardinality="1" Type="Swisscard.MS.Service" />
+          <Target ID="ManagedServiceComponent" MinCardinality="0" MaxCardinality="2147483647" Type="Swisscard.MS.ServiceComponent" />
+        </RelationshipType>
+        <RelationshipType ID="Swisscard.MS.ManagedServiceHasSupplier" Accessibility="Public" Abstract="false" Base="SystemLibrary!System.Reference">
+          <Source ID="ManagedService" MinCardinality="0" MaxCardinality="2147483647" Type="Swisscard.MS" />
+          <Target ID="ProvanceClassCompany" MinCardinality="0" MaxCardinality="1" Type="ProvanceCommon!Provance.Class.Company" />
+        </RelationshipType>
+        <RelationshipType ID="Swisscard.MS.ManagedServiceComponentRelatesToHardwareAsset" Accessibility="Public" Abstract="false" Base="SystemLibrary!System.Reference">
+          <Source ID="ManagedServiceComponent" MinCardinality="0" MaxCardinality="2147483647" Type="Swisscard.MS.ServiceComponent" />
+          <Target ID="ProvanceAsset" MinCardinality="0" MaxCardinality="2147483647" Type="ProvanceAssetLibrary!Provance.Class.HardwareAsset" />
+        </RelationshipType>
+        <RelationshipType ID="Swisscard.MS.ManagedServiceComponentHasManagedServiceComponent" Accessibility="Public" Abstract="false" Base="SystemLibrary!System.Membership">
+          <Source ID="SourceManagedServiceComponent" MinCardinality="0" MaxCardinality="1" Type="Swisscard.MS.ServiceComponent" />
+          <Target ID="TargetManagedServiceComponent" MinCardinality="0" MaxCardinality="2147483647" Type="Swisscard.MS.ServiceComponent" />
+        </RelationshipType>
+      </RelationshipTypes>
+      <EnumerationTypes>
+        <EnumerationValue ID="Swisscard.MS.ClassificationEnum" Accessibility="Public" />
+        <EnumerationValue ID="Swisscard.MS.CriticalityEnum" Accessibility="Public" />
+        <EnumerationValue ID="Swisscard.MS.StatusEnum" Accessibility="Public" />
+      </EnumerationTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <Categories>
+    <Category ID="Category.Swisscard.MS.Class.Library" Value="EnterpriseManagement!Microsoft.EnterpriseManagement.ServiceManager.ManagementPack">
+      <ManagementPackName>Swisscard.MS.Class.Library</ManagementPackName>
+      <ManagementPackVersion>1.0.0.0</ManagementPackVersion>
+      <ManagementPackPublicKeyToken>9dad84fcca8cc389</ManagementPackPublicKeyToken>
+    </Category>
+    <Category ID="Swisscard.MS.ClassificationEnum.EnumerationViewTasks.Category" Target="Swisscard.MS.ClassificationEnum" Value="UIAuthoring!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
+    <Category ID="Swisscard.MS.ClassificationEnum.VisibleToUser.Category" Target="Swisscard.MS.ClassificationEnum" Value="SystemLibrary!VisibleToUser" />
+    <Category ID="Swisscard.MS.CriticalityEnum.EnumerationViewTasks.Category" Target="Swisscard.MS.CriticalityEnum" Value="UIAuthoring!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
+    <Category ID="Swisscard.MS.CriticalityEnum.VisibleToUser.Category" Target="Swisscard.MS.CriticalityEnum" Value="SystemLibrary!VisibleToUser" />
+    <Category ID="Swisscard.MS.StatusEnum.EnumerationViewTasks.Category" Target="Swisscard.MS.StatusEnum" Value="UIAuthoring!Microsoft.EnterpriseManagement.ServiceManager.UI.Authoring.EnumerationViewTasks" />
+    <Category ID="Swisscard.MS.StatusEnum.VisibleToUser.Category" Target="Swisscard.MS.StatusEnum" Value="SystemLibrary!VisibleToUser" />
+  </Categories>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="false">
+      <DisplayStrings>
+        <DisplayString ElementID="Swisscard.MS.Class.Library">
+          <Name>Swisscard Managed Services Class Library</Name>
+          <Description>Swisscard Managed Services Class Library</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.ClassificationEnum">
+          <Name>Classification</Name>
+          <Description>Swisscard Managed Services Classification Enumeration</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.CriticalityEnum">
+          <Name>Criticality</Name>
+          <Description>Swisscard Managed Services Criticality Enumeration</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.StatusEnum">
+          <Name>Status</Name>
+          <Description>Swisscard Managed Services Status Enumeration</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS">
+          <Name>Managed Services</Name>
+          <Description>Swisscard Managed Services</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS" SubElementID="ID">
+          <Name>ID</Name>
+          <Description>Swisscard Managed Services Property - ID</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS" SubElementID="Classification">
+          <Name>Classification</Name>
+          <Description>Swisscard Managed Services Property - Classification</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS" SubElementID="Criticality">
+          <Name>Criticality</Name>
+          <Description>Swisscard Managed Services Property - Criticality</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS" SubElementID="Description">
+          <Name>Description</Name>
+          <Description>Swisscard Managed Services Property - Description</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS" SubElementID="DocumentationPath">
+          <Name>Documentation Path</Name>
+          <Description>Swisscard Managed Services Property - Documentation Path</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS" SubElementID="CrossPlatformID">
+          <Name>Cross Platform ID</Name>
+          <Description>Swisscard Managed Services Property - Cross Platform ID</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS" SubElementID="MaintenanceWindow">
+          <Name>Maintenance Window</Name>
+          <Description>Swisscard Managed Services Property - Maintenance Window</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS" SubElementID="Name">
+          <Name>Name</Name>
+          <Description>Swisscard Managed Services Property - Name</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS" SubElementID="Status">
+          <Name>Status</Name>
+          <Description>Swisscard Managed Services Property - Status</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Service">
+          <Name>Swisscard Managed Services Service</Name>
+          <Description>Swisscard Managed Services Service</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Service" SubElementID="ID">
+          <Name>ID</Name>
+          <Description>Swisscard Managed Services Service Property - ID</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.ServiceComponent">
+          <Name>Swisscard Managed Services Service Component</Name>
+          <Description>Swisscard Managed Services Service Component</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.ServiceComponent" SubElementID="ID">
+          <Name>ID</Name>
+          <Description>Swisscard Managed Services Service Component Property - ID</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.ServiceComponent" SubElementID="TargetOU">
+          <Name>Target OU</Name>
+          <Description>Swisscard Managed Services Service Component Property - TargetOU</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.ManagedServiceImpactsUser">
+          <Name>Managed Service Impacts User</Name>
+          <Description>Swisscard Managed Services Relationship - Managed Service Impacts User</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.ManagedServiceHasContact">
+          <Name>Managed Service Has Contact</Name>
+          <Description>Swisscard Managed Services Relationship - Managed Service Has Contact</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.ManagedServiceHasResponsibleDepartment">
+          <Name>Managed Service Has Responsible Department</Name>
+          <Description>Swisscard Managed Services Relationship - Managed Service Has Responsible Department</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.ManagedServiceDependsOnManagedService">
+          <Name>Managed Service Depends On Managed Service</Name>
+          <Description>Swisscard Managed Services Relationship - Managed Service Depends On Managed Service</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.ManagedServiceHasOwner">
+          <Name>Managed Service Has Owner</Name>
+          <Description>Swisscard Managed Services Relationship - Managed Service Has Owner</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.ManagedServiceHasManagedServiceComponent">
+          <Name>Managed Service Has Managed Service Component</Name>
+          <Description>Swisscard Managed Services Relationship - Managed Service Has Managed Service Component</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.ManagedServiceHasSupplier">
+          <Name>Managed Service Has Supplier</Name>
+          <Description>Swisscard Managed Services Relationship - Managed Service Has Supplier</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.ManagedServiceComponentRelatesToHardwareAsset">
+          <Name>Managed Service Component Relates To Hardware Asset</Name>
+          <Description>Swisscard Managed Services Relationship - Managed Service Component Relates To Hardware Asset</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.ManagedServiceComponentHasManagedServiceComponent">
+          <Name>Managed Service Component Has Managed Service Component</Name>
+          <Description>Swisscard Managed Services Relationship - Managed Service Component Has Managed Service Component</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPack>

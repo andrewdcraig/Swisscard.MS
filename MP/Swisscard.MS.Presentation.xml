@@ -1,0 +1,244 @@
+﻿<ManagementPack ContentReadable="true" SchemaVersion="2.0" OriginalSchemaVersion="1.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <Manifest>
+    <Identity>
+      <ID>Swisscard.MS.Presentation</ID>
+      <Version>1.0.0.7</Version>
+    </Identity>
+    <Name>Swisscard Managed Services Presentation</Name>
+    <References>
+      <Reference Alias="EnterpriseManagement">
+        <ID>Microsoft.EnterpriseManagement.ServiceManager.UI.Console</ID>
+        <Version>7.5.3079.148</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="CustomMicrosoft_Windows_Library">
+        <ID>Microsoft.Windows.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SystemLibrary">
+        <ID>System.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SystemCenter">
+        <ID>Microsoft.SystemCenter.Library</ID>
+        <Version>7.0.8433.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SwisscardMSCL">
+        <ID>Swisscard.MS.Class.Library</ID>
+        <Version>1.0.0.0</Version>
+        <PublicKeyToken>9dad84fcca8cc389</PublicKeyToken>
+      </Reference>
+      <Reference Alias="WorkItem">
+        <ID>System.WorkItem.Library</ID>
+        <Version>7.5.3079.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="Knowledge">
+        <ID>System.Knowledge.Library</ID>
+        <Version>7.5.3079.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+    </References>
+  </Manifest>
+  <TypeDefinitions>
+    <EntityTypes>
+      <TypeProjections>
+        <TypeProjection ID="Swisscard.MS.TypeProjection" Type="SwisscardMSCL!Swisscard.MS" Accessibility="Public">
+          <Component Path="$Target/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItems" />
+          <Component Path="$Target/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedWorkItems" />
+          <Component Path="$Target/Path[Relationship='SystemLibrary!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedCI" />
+          <Component Path="$Target/Path[Relationship='SystemLibrary!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedCCISource" />
+          <Component Path="$Target/Path[Relationship='SwisscardMSCL!Swisscard.MS.ManagedServiceImpactsUser']$" Alias="ImpactedUser" />
+          <Component Path="$Target/Path[Relationship='SwisscardMSCL!Swisscard.MS.ManagedServiceHasContact']$" Alias="Contact" />
+          <Component Path="$Target/Path[Relationship='SwisscardMSCL!Swisscard.MS.ManagedServiceHasResponsibleDepartment']$" Alias="Department" />
+          <Component Path="$Target/Path[Relationship='SwisscardMSCL!Swisscard.MS.ManagedServiceDependsOnManagedService']$" Alias="DependsOnManagedService" />
+          <Component Path="$Target/Path[Relationship='SwisscardMSCL!Swisscard.MS.ManagedServiceHasOwner']$" Alias="Owner" />
+          <Component Path="$Target/Path[Relationship='SwisscardMSCL!Swisscard.MS.ManagedServiceHasSupplier']$" Alias="Supplier" />
+        </TypeProjection>
+        <TypeProjection ID="Swisscard.MS.ServiceComponent.TypeProjection" Type="SwisscardMSCL!Swisscard.MS.ServiceComponent" Accessibility="Public">
+          <Component Path="$Target/Path[Relationship='SwisscardMSCL!Swisscard.MS.ManagedServiceComponentRelatesToHardwareAsset']$" Alias="RelatedAsset" />
+          <Component Path="$Target/Path[Relationship='SwisscardMSCL!Swisscard.MS.ManagedServiceComponentHasManagedServiceComponent']$" Alias="ServiceComponentHasServiceComponent" />
+          <Component Path="$Target/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItems" />
+          <Component Path="$Target/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedWIs" />
+          <Component Path="$Target/Path[Relationship='SystemLibrary!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedCIs" />
+          <Component Path="$Target/Path[Relationship='SystemLibrary!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedCIsSource" />
+          <Component Path="$Target/Path[Relationship='Knowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+          <Component Path="$Target/Path[Relationship='SwisscardMSCL!Swisscard.MS.ManagedServiceHasOwner']$" Alias="Owner" />
+          <Component Path="$Target/Path[Relationship='SwisscardMSCL!Swisscard.MS.ManagedServiceHasSupplier']$" Alias="Supplier" />
+          <Component Path="$Target/Path[Relationship='SwisscardMSCL!Swisscard.MS.ManagedServiceHasResponsibleDepartment']$" Alias="Department" />
+          <Component Path="$Target/Path[Relationship='SwisscardMSCL!Swisscard.MS.ManagedServiceImpactsUser']$" Alias="ImpactedUser" />
+          <Component Path="$Target/Path[Relationship='SwisscardMSCL!Swisscard.MS.ManagedServiceHasContact']$" Alias="Contact" />
+        </TypeProjection>
+        <TypeProjection ID="Swisscard.MS.Service.TypeProjection" Type="SwisscardMSCL!Swisscard.MS.Service" Accessibility="Public">
+          <Component Path="$Target/Path[Relationship='SwisscardMSCL!Swisscard.MS.ManagedServiceHasManagedServiceComponent']$" Alias="HasServiceComponent" />
+          <Component Path="$Target/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItems" />
+          <Component Path="$Target/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedWIs" />
+          <Component Path="$Target/Path[Relationship='SystemLibrary!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedCIs" />
+          <Component Path="$Target/Path[Relationship='SystemLibrary!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedCIsSource" />
+          <Component Path="$Target/Path[Relationship='Knowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+          <Component Path="$Target/Path[Relationship='SwisscardMSCL!Swisscard.MS.ManagedServiceHasOwner']$" Alias="Owner" />
+          <Component Path="$Target/Path[Relationship='SwisscardMSCL!Swisscard.MS.ManagedServiceHasSupplier']$" Alias="Supplier" />
+          <Component Path="$Target/Path[Relationship='SwisscardMSCL!Swisscard.MS.ManagedServiceHasResponsibleDepartment']$" Alias="Department" />
+          <Component Path="$Target/Path[Relationship='SwisscardMSCL!Swisscard.MS.ManagedServiceImpactsUser']$" Alias="ImpactedUser" />
+          <Component Path="$Target/Path[Relationship='SwisscardMSCL!Swisscard.MS.ManagedServiceHasContact']$" Alias="Contact" />
+        </TypeProjection>
+      </TypeProjections>
+    </EntityTypes>
+  </TypeDefinitions>
+  <Categories>
+    <Category ID="Category.Swisscard.MS.Class.Library" Value="EnterpriseManagement!Microsoft.EnterpriseManagement.ServiceManager.ManagementPack">
+      <ManagementPackName>Swisscard.MS.Class.Library</ManagementPackName>
+      <ManagementPackVersion>1.0.0.0</ManagementPackVersion>
+      <ManagementPackPublicKeyToken>9dad84fcca8cc389</ManagementPackPublicKeyToken>
+    </Category>
+  </Categories>
+  <Presentation>
+    <Forms>
+      <Form ID="Swisscard.MS.Form" Accessibility="Public" Target="Swisscard.MS.TypeProjection"
+            Assembly="Swisscard.MS.Assembly"
+            TypeName="Swisscard.MS.Controls.SwisscardMSService">
+        <Category>Form</Category>
+      </Form>
+    </Forms>
+    <StringResources>
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.TabItem_General" />
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.TabItem_RelatedItems" />
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.TabItem_History" />
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.Header_Attachments" />
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.But_Add" />
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.But_Open" />
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.But_Remove" />
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.DisplayName" />
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.Id" />
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.Header_User" />
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.Header_Supplier" />
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.Column_FirstName" />
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.Column_LastName" />
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.Column_UserName" />
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.Header_RequestOffering" />
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.But_New" />
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.Column_Type" />
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.Clear_Text_Field"/>
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.Column_Class"/>
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.Column_Path"/>
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.Column_Description"/>
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.But_OK"/>
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.But_Cancel"/>
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.Header_Department"/>
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.Header_BusinessPhone"/>
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.Header_HasServiceComponent"/>
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.Header_ImpactedUser"/>
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.Department"/>
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.BusinessPhone"/>
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.HasServiceComponent"/>
+      <StringResource ID="Swisscard.MS.Presentation.FormStrings.ImpactedUser"/>
+    </StringResources>
+  </Presentation>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="false">
+      <DisplayStrings>
+        <DisplayString ElementID="Swisscard.MS.Presentation">
+          <Name>Swisscard Managed Services Presentation</Name>
+          <Description>Swisscard Managed Services Presentation</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.TabItem_General">
+          <Name>General</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.TabItem_RelatedItems">
+          <Name>Related Items</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.TabItem_History">
+          <Name>History</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.But_Add">
+          <Name>Add</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.But_Open">
+          <Name>Open</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.But_Remove">
+          <Name>Remove</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.DisplayName">
+          <Name>Display Name</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.Id">
+          <Name>ID</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.Header_User">
+          <Name>User</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.Header_Supplier">
+          <Name>Supplier</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.Column_FirstName">
+          <Name>First Name</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.Column_LastName">
+          <Name>Last Name</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.Column_UserName">
+          <Name>User Name</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.Column_Class">
+          <Name>Class</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.Column_Path">
+          <Name>Path</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.Column_Description">
+          <Name>Description</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.Header_RequestOffering">
+          <Name>Request Offering</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.But_New">
+          <Name>New</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.But_OK">
+          <Name>OK</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.But_Cancel">
+          <Name>Cancel</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.Column_Type">
+          <Name>Type</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.Clear_Text_Field">
+          <Name>Clear Field</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.Header_Department">
+          <Name>Department</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.Header_BusinessPhone">
+          <Name>Tel. Number</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.Header_HasServiceComponent">
+          <Name>Service Component</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.Header_ImpactedUser">
+          <Name>Affected User</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.Department">
+          <Name>Department</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.BusinessPhone">
+          <Name>Tel. Number</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.HasServiceComponent">
+          <Name>Service Component</Name>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.Presentation.FormStrings.ImpactedUser">
+          <Name>Affected User</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+  <Resources>
+    <Assembly ID="Swisscard.MS.Assembly" Accessibility="Public" FileName="Swisscard.MS.dll" HasNullStream="false" QualifiedName="Swisscard.MS" />
+  </Resources>
+</ManagementPack>
+

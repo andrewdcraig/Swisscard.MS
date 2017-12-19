@@ -1,0 +1,391 @@
+﻿<UserControl x:Class="Swisscard.MS.Controls.SwisscardMSServiceComponent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Swisscard.MS.Controls"
+             xmlns:views="clr-namespace:Microsoft.EnterpriseManagement.UI.FormsInfra;assembly=Microsoft.EnterpriseManagement.UI.FormsInfra"
+             xmlns:wpftk="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit"
+             xmlns:helpers="clr-namespace:Swisscard.MS.Helpers"
+             xmlns:smcontrols="clr-namespace:Microsoft.EnterpriseManagement.UI.WpfControls;assembly=Microsoft.EnterpriseManagement.UI.SdkDataAccess"
+             xmlns:smcontrolsold="clr-namespace:Microsoft.EnterpriseManagement.UI.WpfControls;assembly=Microsoft.EnterpriseManagement.UI.SMControls"
+             xmlns:controls  ="clr-namespace:Microsoft.EnterpriseManagement.UI.WpfControls;assembly=Microsoft.EnterpriseManagement.UI.Controls"
+             xmlns:primitives="clr-namespace:ItnetX.Controls.Primitives"
+             xmlns:toolbox="clr-namespace:Microsoft.EnterpriseManagement.UI.WpfToolbox;assembly=Microsoft.EnterpriseManagement.UI.FormsInfra"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="810" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Swisscard.MS;component/Controls/Common.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="66" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Name="gridHeader" Background="{DynamicResource ActivityBannerBack}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Name="imgSuperGridBrand"  Grid.Column="0" Grid.ColumnSpan="2" 
+                       Fill="{DynamicResource SuperGridBannerBrush}"  />
+            <!-- <Image Source="pack://application:,,,/ETH.IDES.Forms;component/Images/Fund_32.png" Width="32" Height="32"/> -->
+            <Label Name="lblDisplayName" Grid.Column="1" Margin="10" FontSize="18"
+                   VerticalAlignment="Center" HorizontalAlignment="Left">
+                <Label.Content>
+                    <Binding Path="Name" FallbackValue="Swisscard Managed Services" UpdateSourceTrigger="PropertyChanged" />
+                </Label.Content>
+            </Label>
+            <Label Name="lblCreatedOn" Grid.Column="2" Margin="0" FontSize="12" FontWeight="Bold"
+                   VerticalAlignment="Center" HorizontalAlignment="Right">
+                <Label.Content>
+                    Created On:
+                </Label.Content>
+            </Label>
+            <Label Name="datCreatedOn" Grid.Column="3" Margin="0" FontSize="12"
+                   VerticalAlignment="Center" HorizontalAlignment="Left">
+                <Label.Content>
+                    <Binding Path="[TimeAdded]" FallbackValue="" UpdateSourceTrigger="PropertyChanged" />
+                </Label.Content>
+            </Label>
+        </Grid>
+
+        <TabControl Grid.Row="1" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" BorderThickness="2,2,2,2" IsSynchronizedWithCurrentItem="True">
+            <TabItem Name="generalTabItem" IsSelected="true" Header="{Binding Path=[TabItem_General], Source={x:Static helpers:Constants.LocalizationHelper}}">
+                <ScrollViewer Name="ScrollViewer36" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" BorderBrush="{x:Null}">
+                    <Grid Name="gridBody" Margin="10" Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Grid.Row="0" >
+                            <Label Target="{Binding ElementName=DisplayName}" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Label.Content>
+                                    <Binding  Path="Strings[DisplayName].Value" RelativeSource="{RelativeSource FindAncestor , AncestorType={x:Type views:FormView}}" FallbackValue="[DisplayName]"/>
+                                </Label.Content>
+                            </Label>
+                            <TextBox Name="txtDisplayName" IsEnabled="{Binding ID$IsUpdatable$}" IsReadOnly="True"
+                                     MaxLength="{Binding Path=$Class$.PropertyCollection[DisplayName].MaxLength}">
+                                <TextBox.Text>
+                                    <Binding Path="Name" TargetNullValue="(null)" FallbackValue="(null)" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" />
+                                </TextBox.Text>
+                            </TextBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Grid.Row="0" >
+                            <Label Target="{Binding ElementName=Status}" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Label.Content>
+                                    <Binding  Path="Strings[Status].Value" RelativeSource="{RelativeSource FindAncestor , AncestorType={x:Type views:FormView}}" FallbackValue="[Status]"/>
+                                </Label.Content>
+                            </Label>
+                            <smcontrols:ListPicker Name="lpStatus" IsEnabled="{Binding Status$IsUpdatable$}" SelectedItem="{Binding Status,Mode=TwoWay}" ParentCategoryId="{x:Static helpers:Constants.Enum_Swisscard_MS_StatusEnum}"
+                                      />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="0" Grid.Row="1" >
+                            <Label Target="{Binding ElementName=Name}" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Label.Content>
+                                    <Binding  Path="Strings[Name].Value" RelativeSource="{RelativeSource FindAncestor , AncestorType={x:Type views:FormView}}" FallbackValue="[Name]"/>
+                                </Label.Content>
+                            </Label>
+                            <TextBox Name="txtName" IsEnabled="{Binding Status$IsUpdatable$}"
+                                     MaxLength="{Binding Path=$Class$.PropertyCollection[Name].MaxLength}" >
+                                <TextBox.Text>
+                                    <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <helpers:NotEmptyValidationRule/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Grid.Row="1">
+                            <Label Target="{Binding ElementName=txtCrossPlatformID}" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                Cross Platform ID
+                            </Label>
+                            <TextBox Name="txtCrossPlatformID" IsEnabled="{Binding CrossPlatformID$IsUpdatable$}"
+                                     MaxLength="{Binding Path=$Class$.PropertyCollection[CrossPlatformID].MaxLength}"
+                                     Text="{Binding CrossPlatformID, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="0" Grid.Row="2">
+                            <Label Target="{Binding ElementName=txtClassification}" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                Classification
+                            </Label>
+                            <smcontrols:ListPicker Name="cbClassification" IsEnabled="{Binding Classification$IsUpdatable$}" SelectedItem="{Binding Classification,Mode=TwoWay}" ParentCategoryId="{x:Static helpers:Constants.Enum_Swisscard_MS_ClassificationEnum}"
+                                      />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Grid.Row="2">
+                            <Label Target="{Binding ElementName=txtCriticality}" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                Criticality
+                            </Label>
+                            <smcontrols:ListPicker Name="cbCriticality" IsEnabled="{Binding Criticality$IsUpdatable$}" SelectedItem="{Binding Criticality,Mode=TwoWay}" ParentCategoryId="{x:Static helpers:Constants.Enum_Swisscard_MS_CriticalityEnum}"
+                                      />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3">
+                            <Label Target="{Binding ElementName=txtDescription}" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Label.Content>
+                                    <Binding  Path="Strings[Description].Value" RelativeSource="{RelativeSource FindAncestor , AncestorType={x:Type views:FormView}}" FallbackValue="[Description]"/>
+                                </Label.Content>
+                            </Label>
+                            <TextBox Name="txtDescription" IsEnabled="{Binding Description$IsUpdatable$}" 
+                                     MaxLength="{Binding Path=$Class$.PropertyCollection[Description].MaxLength}"
+                                     Text="{Binding Description}" TextWrapping="Wrap"
+                                     AcceptsReturn="True"
+                                     Height="80"   
+                                     Style="{StaticResource textBoxMultiLineStyle}" VerticalScrollBarVisibility="Auto"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="0" Grid.Row="4" >
+                            <Label Target="{Binding ElementName=txtResponsibleUser}" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                Responsible User
+                            </Label>
+                            <smcontrolsold:UserPicker Name="upResponsibleUser"
+                                                      User="{Binding Owner, Mode=TwoWay}"
+                                                   />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Grid.Row="4" >
+                            <Label Target="{Binding ElementName=sipResponsibleDepartment}" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                Responsible Department
+                            </Label>
+                            <smcontrolsold:SingleInstancePicker BaseClassId="{x:Static helpers:Constants.Class_Provance_Class_OrganizationBase}"
+                                                                Name="sipResponsibleDepartment"
+                                                                Instance="{Binding Department, Mode=TwoWay}"
+                                     />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3">
+                            <primitives:ListEditorControl Grid.Column="0" Grid.ColumnSpan="3"
+                                                    CollectionPropertyName="Contact"
+                                                    ItemClassGuid="{x:Static helpers:Constants.Class_System_Domain_User}"
+                                                    CanAdd="True" CanAddNew="True" CanRemove="True"
+                                                    ThisEndProperty="ManagedService" Loaded="ListEditorControl_Loaded">
+                                <primitives:ListEditorControl.Resources>
+                                    <GridView x:Shared="False" x:Key="affectedCIsGridView">
+                                        <controls:SortableGridViewColumn Width="28" >
+                                            <!--
+                                        <controls:SortableGridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Height="16" Width="16" Source="{Binding $Class$.Image, Converter={StaticResource ImageDataToImageSourceConverter}}" Margin="0" />
+                                            </DataTemplate>
+                                        </controls:SortableGridViewColumn.CellTemplate>
+                                        -->
+                                        </controls:SortableGridViewColumn>
+                                        <controls:SortableGridViewColumn Width="140" SortPropertyName="DisplayName" DisplayMemberBinding="{Binding Path=DisplayName, Mode=OneWay}" Header="{Binding Path=[DisplayName], Source={x:Static helpers:Constants.LocalizationHelper}}" />
+                                        <controls:SortableGridViewColumn Width="100" SortPropertyName="Department" DisplayMemberBinding="{Binding Path=Department.DisplaName, Mode=OneWay}" Header="{Binding Path=[Department], Source={x:Static helpers:Constants.LocalizationHelper}}" />
+                                        <controls:SortableGridViewColumn Width="240" SortPropertyName="BusinessPhone" DisplayMemberBinding="{Binding Path=BusinessPhone.DisplayName, Mode=OneWay}" Header="{Binding Path=[BusinessPhone], Source={x:Static helpers:Constants.LocalizationHelper}}" />
+                                    </GridView>
+                                    <Style x:Key="{x:Type controls:SortableListView}" TargetType="{x:Type controls:SortableListView}"  BasedOn="{StaticResource WindowsThemeListViewStyle}">
+                                        <Setter Property="MinHeight" Value="80" />
+                                        <Setter Property="SelectionMode" Value="Extended" />
+                                        <Setter Property="VerticalAlignment" Value="Stretch" />
+                                        <Setter Property="VerticalContentAlignment" Value="Top" />
+                                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                        <Setter Property="IsSynchronizedWithCurrentItem" Value="True" />
+                                        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+                                        <Setter Property="IsSynchronizedWithCurrentItem" Value="True" />
+                                        <Setter Property="controls:SortableListView.View" Value="{StaticResource affectedCIsGridView}" />
+                                    </Style>
+                                </primitives:ListEditorControl.Resources>
+                            </primitives:ListEditorControl>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3">
+                            <primitives:ListEditorControl Grid.Column="0" Grid.ColumnSpan="3"
+                                                    CollectionPropertyName="ServiceComponentHasServiceComponent"
+                                                    ItemClassGuid="{x:Static helpers:Constants.Class_Swisscard_MS_ServiceComponent}"
+                                                    CanAdd="False" CanAddNew="True" CanRemove="True"
+                                                    RelationshipMode="Membership"
+                                                    ThisEndProperty="SourceManagedServiceComponent">
+                                <primitives:ListEditorControl.Resources>
+                                    <GridView x:Shared="False" x:Key="affectedCIsGridView">
+                                        <controls:SortableGridViewColumn Width="28" >
+                                            <!--
+                                        <controls:SortableGridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Height="16" Width="16" Source="{Binding $Class$.Image, Converter={StaticResource ImageDataToImageSourceConverter}}" Margin="0" />
+                                            </DataTemplate>
+                                        </controls:SortableGridViewColumn.CellTemplate>
+                                        -->
+                                        </controls:SortableGridViewColumn>
+                                        <controls:SortableGridViewColumn Width="50" SortPropertyName="Id" DisplayMemberBinding="{Binding Path=Id, Mode=OneWay}" Header="{Binding Path=[Id], Source={x:Static helpers:Constants.LocalizationHelper}}" />
+                                        <controls:SortableGridViewColumn Width="240" SortPropertyName="DisplayName" DisplayMemberBinding="{Binding Path=DisplayName, Mode=OneWay}" Header="{Binding Path=[DisplayName], Source={x:Static helpers:Constants.LocalizationHelper}}" />
+                                        <controls:SortableGridViewColumn Width="140" SortPropertyName="$Class$" DisplayMemberBinding="{Binding Path=$Class$.DisplayName, Mode=OneWay}" Header="{Binding Path=[Column_Class], Source={x:Static helpers:Constants.LocalizationHelper}}" />
+                                    </GridView>
+                                    <Style x:Key="{x:Type controls:SortableListView}" TargetType="{x:Type controls:SortableListView}"  BasedOn="{StaticResource WindowsThemeListViewStyle}">
+                                        <Setter Property="MinHeight" Value="80" />
+                                        <Setter Property="SelectionMode" Value="Extended" />
+                                        <Setter Property="VerticalAlignment" Value="Stretch" />
+                                        <Setter Property="VerticalContentAlignment" Value="Top" />
+                                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                        <Setter Property="IsSynchronizedWithCurrentItem" Value="True" />
+                                        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+                                        <Setter Property="IsSynchronizedWithCurrentItem" Value="True" />
+                                        <Setter Property="controls:SortableListView.View" Value="{StaticResource affectedCIsGridView}" />
+                                    </Style>
+                                </primitives:ListEditorControl.Resources>
+                            </primitives:ListEditorControl>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Name="tbServInfo" SnapsToDevicePixels="false" Header="Service Information">
+                <ScrollViewer Name="ScrollViewer3" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" BorderBrush="{x:Null}">
+                    <Grid Name="gridBody3" Margin="10" Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+
+                        <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" >
+                            <Label Target="{Binding ElementName=sipSupplier}" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                Supplier
+                            </Label>
+                            <smcontrolsold:SingleInstancePicker BaseClassId="{x:Static helpers:Constants.Class_Provance_Class_Company}"
+                                                                Name="sipSupplier"
+                                                                Instance="{Binding Supplier, Mode=TwoWay}"
+                                     />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3">
+                            <Label Target="{Binding ElementName=txtDocumentationPath}" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                Documentation Path
+                            </Label>
+                            <TextBox Name="txtDocumentationPath" IsEnabled="{Binding DocumentationPath$IsUpdatable$}" 
+                                     MaxLength="{Binding Path=$Class$.PropertyCollection[DocumentationPath].MaxLength}"
+                                     Height="30"
+                                     VerticalScrollBarVisibility="Auto"
+                                     Text="{Binding DocumentationPath, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3">
+                            <Label Target="{Binding ElementName=txtMaintenanceWindow}" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                Maintenance Window
+                            </Label>
+                            <TextBox Name="txtMaintenanceWindow" IsEnabled="{Binding MaintenanceWindow$IsUpdatable$}" 
+                                     MaxLength="{Binding Path=$Class$.PropertyCollection[MaintenanceWindow].MaxLength}"
+                                     Text="{Binding MaintenanceWindow, UpdateSourceTrigger=PropertyChanged}"
+                                     AcceptsReturn="True"
+                                     Height="50"
+                                     VerticalScrollBarVisibility="Auto"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3">
+                            <primitives:ListEditorControl Grid.Column="0" Grid.ColumnSpan="3"
+                                                    CollectionPropertyName="ImpactedUser"
+                                                    ItemClassGuid="{x:Static helpers:Constants.Class_System_Domain_User}"
+                                                    CanAdd="True" CanAddNew="True" CanRemove="True"
+                                                    ThisEndProperty="ManagedService">
+                                <primitives:ListEditorControl.Resources>
+                                    <GridView x:Shared="False" x:Key="affectedCIsGridView">
+                                        <controls:SortableGridViewColumn Width="28" >
+                                            <!--
+                                        <controls:SortableGridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Image Height="16" Width="16" Source="{Binding $Class$.Image, Converter={StaticResource ImageDataToImageSourceConverter}}" Margin="0" />
+                                            </DataTemplate>
+                                        </controls:SortableGridViewColumn.CellTemplate>
+                                        -->
+                                        </controls:SortableGridViewColumn>
+                                        <controls:SortableGridViewColumn Width="140" SortPropertyName="DisplayName" DisplayMemberBinding="{Binding Path=DisplayName, Mode=OneWay}" Header="{Binding Path=[DisplayName], Source={x:Static helpers:Constants.LocalizationHelper}}" />
+                                        <controls:SortableGridViewColumn Width="100" SortPropertyName="Department" DisplayMemberBinding="{Binding Path=Department, Mode=OneWay}" Header="{Binding Path=[Department], Source={x:Static helpers:Constants.LocalizationHelper}}" />
+                                        <controls:SortableGridViewColumn Width="240" SortPropertyName="BusinessPhone" DisplayMemberBinding="{Binding Path=BusinessPhone, Mode=OneWay}" Header="{Binding Path=[BusinessPhone], Source={x:Static helpers:Constants.LocalizationHelper}}" />
+                                    </GridView>
+                                    <Style x:Key="{x:Type controls:SortableListView}" TargetType="{x:Type controls:SortableListView}"  BasedOn="{StaticResource WindowsThemeListViewStyle}">
+                                        <Setter Property="MinHeight" Value="80" />
+                                        <Setter Property="SelectionMode" Value="Extended" />
+                                        <Setter Property="VerticalAlignment" Value="Stretch" />
+                                        <Setter Property="VerticalContentAlignment" Value="Top" />
+                                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                        <Setter Property="IsSynchronizedWithCurrentItem" Value="True" />
+                                        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+                                        <Setter Property="IsSynchronizedWithCurrentItem" Value="True" />
+                                        <Setter Property="controls:SortableListView.View" Value="{StaticResource affectedCIsGridView}" />
+                                    </Style>
+                                </primitives:ListEditorControl.Resources>
+                            </primitives:ListEditorControl>
+                        </StackPanel>
+
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Name="RelatedItemsTab" SnapsToDevicePixels="false" Header="{Binding Path=[TabItem_RelatedItems], Source={x:Static helpers:Constants.LocalizationHelper}}" />
+            <TabItem Name="Notes" SnapsToDevicePixels="false" Header="Notes">
+                <ScrollViewer Name="ScrollViewer1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" BorderBrush="{x:Null}">
+                    <Grid Name="gridBody1" Margin="10" Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
+                            <Label Target="{Binding ElementName=txtNotes}" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Label.Content>
+                                    <Binding  Path="Strings[Notes].Value" RelativeSource="{RelativeSource FindAncestor , AncestorType={x:Type views:FormView}}" FallbackValue="[Notes]"/>
+                                </Label.Content>
+                            </Label>
+                            <TextBox Name="txtNotes" IsEnabled="{Binding Notes$IsUpdatable$}"
+                                     MaxLength="{Binding Path=$Class$.PropertyCollection[Notes].MaxLength}"
+                                     Text="{Binding Notes}" TextWrapping="Wrap"
+                                     AcceptsReturn="True"
+                                     Height="160"
+                                     VerticalScrollBarVisibility="Auto"
+                                     Style="{StaticResource textBoxMultiLineStyle}"/>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Name="historyTabItem" Style="{DynamicResource FormTabItemStyle}"
+                     Header="{Binding Path=[TabItem_History], Source={x:Static helpers:Constants.LocalizationHelper}}"
+                     Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=IsTemplateMode, Converter={StaticResource b2vis}}">
+                <smcontrolsold:HistoryTab Name="historyTabControl" />
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

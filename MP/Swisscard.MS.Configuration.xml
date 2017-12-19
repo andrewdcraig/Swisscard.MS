@@ -1,0 +1,73 @@
+﻿<ManagementPack ContentReadable="true" SchemaVersion="2.0" OriginalSchemaVersion="1.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <Manifest>
+    <Identity>
+      <ID>Swisscard.MS.Configuration</ID>
+      <Version>1.0.0.1</Version>
+    </Identity>
+    <Name>Swisscard Managed Services Class Library</Name>
+    <References>
+      <Reference Alias="EnterpriseManagement">
+        <ID>Microsoft.EnterpriseManagement.ServiceManager.UI.Console</ID>
+        <Version>7.5.3079.148</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="CustomMicrosoft_Windows_Library">
+        <ID>Microsoft.Windows.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SystemLibrary">
+        <ID>System.Library</ID>
+        <Version>7.5.8501.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SystemCenter">
+        <ID>Microsoft.SystemCenter.Library</ID>
+        <Version>7.0.8433.0</Version>
+        <PublicKeyToken>31bf3856ad364e35</PublicKeyToken>
+      </Reference>
+      <Reference Alias="SwisscardMSCL">
+        <ID>Swisscard.MS.Class.Library</ID>
+        <Version>1.0.0.0</Version>
+        <PublicKeyToken>9dad84fcca8cc389</PublicKeyToken>
+      </Reference>
+    </References>
+  </Manifest>
+  <TypeDefinitions>
+    <EntityTypes>
+      <EnumerationTypes>
+        <EnumerationValue ID="Swisscard.MS.ClassificationEnum.Storage" Accessibility="Public" Parent="SwisscardMSCL!Swisscard.MS.ClassificationEnum" Ordinal="1" />
+        <EnumerationValue ID="Swisscard.MS.ClassificationEnum.Infrastructure" Accessibility="Public" Parent="SwisscardMSCL!Swisscard.MS.ClassificationEnum" Ordinal="2" />
+        <EnumerationValue ID="Swisscard.MS.CriticalityEnum.High" Accessibility="Public" Parent="SwisscardMSCL!Swisscard.MS.CriticalityEnum" Ordinal="1" />
+        <EnumerationValue ID="Swisscard.MS.StatusEnum.Active" Accessibility="Public" Parent="SwisscardMSCL!Swisscard.MS.StatusEnum" Ordinal="1" />
+      </EnumerationTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="false">
+      <DisplayStrings>
+        <DisplayString ElementID="Swisscard.MS.Configuration">
+          <Name>Swisscard Managed Services Configuration</Name>
+          <Description>Swisscard Managed Services Configuration</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.ClassificationEnum.Storage">
+          <Name>Storage</Name>
+          <Description>Storage</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.ClassificationEnum.Infrastructure">
+          <Name>Infrastructure</Name>
+          <Description>Infrastructure</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.CriticalityEnum.High">
+          <Name>High</Name>
+          <Description>High</Description>
+        </DisplayString>
+        <DisplayString ElementID="Swisscard.MS.StatusEnum.Active">
+          <Name>Active</Name>
+          <Description>Active</Description>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPack>
+
